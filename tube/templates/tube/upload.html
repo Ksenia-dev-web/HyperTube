@@ -1,0 +1,19 @@
+{% extends "tube/base.html" %}}
+
+{% block app_page %}
+    <h2>Upload</h2>
+    <p>available</p>
+
+{% if user.is_authenticated %}
+    <form method="post" action="/tube/upload/" enctype="multipart/form-data">
+        <table>
+            {% csrf_token %}
+            {{ form.as_table}}
+        </table>
+        <button type="submit">Upload</button>
+    </form>
+    <p><a href="{% url 'main' %}">Return to main</a></p>
+{% else %}
+    <p>Please, log in or sign up</p>
+{% endif %}
+{% endblock %}
